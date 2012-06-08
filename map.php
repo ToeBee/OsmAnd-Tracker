@@ -15,6 +15,10 @@
 ?>
 
 <html>
+<head>
+    <title><?php echo $name?>'s Location</title>
+    <meta http-equiv="refresh" content="600" />
+</head>
 <body>
     <h3><?php echo $name?>'s status as of <?php echo $minutesAgo?> minutes ago:</h3>
     <h3>Speed: <?php echo $info['speed']?></h3>
