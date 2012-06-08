@@ -20,3 +20,9 @@
     $height = "500";
     $width = "600";
 ?>
+<html>
+<body>
+  <p>This is just a settings file. Nothing to see here. Move along now.</p>
+  <p>You probably want the <a href="map.php">Map page</a></p>
+</body>
+</html>
