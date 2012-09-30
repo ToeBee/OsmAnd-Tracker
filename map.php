@@ -21,7 +21,7 @@
 </head>
 <body>
     <h3><?php echo $name?>'s status as of <?php echo $minutesAgo?> minutes ago:</h3>
-    <h3>Speed: <?php echo $info['speed']?></h3>
+    <h3>Speed: <?php echo $info['speed']?> m/s</h3>
     <a href=<?php echo $mapUrl?>><img src="<?php echo $staticUrl?>"></a><br/>
     <p>Click for an interactive map</p>
 
