@@ -1,8 +1,10 @@
 <?php
     include "settings.php";
 
-    $loc_string = file_get_contents($filePath);
-    $info = unserialize($loc_string);
+    //$loc_string = file_get_contents($filePath);
+    $strings = file($filePath.".log", FILE_IGNORE_NEW_LINES);
+    //$info = unserialize($loc_string);
+    $info = unserialize(end($strings));
     $timestampSeconds = round($info['timestamp']/1000,0);
     $minutesAgo = round((time() - $timestampSeconds)/60,1);
     $lat = $info['lat'];
@@ -19,11 +21,11 @@
 <html>
 <head>
     <title><?php echo $name; ?>'s Location</title>
-    <meta http-equiv="refresh" content="600" />
+    <meta http-equiv="refresh" content="30" />
 </head>
 <body>
     <h3><?php echo $name?>'s status as of <?php echo $minutesAgo?> minutes ago:</h3>
-    <h3>Speed: <?php echo $info['speed']?> m/s</h3>
+    <h3>Speed: <?php echo $info['speed'].$last_info?> m/s</h3>
     <iframe width="<?php echo $width?>" height="<?php echo $height?>" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="<?php echo $embedUrl?>" style="border: 1px solid black"></iframe>
     <br/>
     <small><a href="<?php echo $mapUrl?>">View Larger Map</a></small>

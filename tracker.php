@@ -17,4 +17,7 @@
     $fh = fopen($filePath, 'w');
     fwrite($fh, serialize($info));
     fclose($fh);
+    $fh = fopen($filePath . ".log", 'a');
+    fwrite($fh, serialize($info) . "\n");
+    fclose($fh);
 ?>
