@@ -17,6 +17,11 @@
     $fh = fopen($filePath, 'w');
     fwrite($fh, serialize($info));
     fclose($fh);
+    $loc_string = file_get_contents($filePath);
+    $old = unserialize($loc_string);
+    if (round(abs($info['timestamp']-$old['timestamp'])/1000) > 60) {
+       rename($filePath . ".log",$filePath . date("YmdHis",round($old['timestamp']/1000)) .".log");
+    }
     $fh = fopen($filePath . ".log", 'a');
     fwrite($fh, serialize($info) . "\n");
     fclose($fh);
