@@ -25,7 +25,7 @@
 </head>
 <body>
     <h3><?php echo $name?>'s status as of <?php echo $minutesAgo?> minutes ago:</h3>
-    <h3>Speed: <?php echo $info['speed'].$last_info?> m/s</h3>
+    <h3>Speed: <?php echo $info['speed']?> m/s</h3>
     <iframe width="<?php echo $width?>" height="<?php echo $height?>" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="<?php echo $embedUrl?>" style="border: 1px solid black"></iframe>
     <br/>
     <small><a href="<?php echo $mapUrl?>">View Larger Map</a></small>
