@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="leaflet/leaflet.css" />
     <script type="text/javascript" src="leaflet/leaflet.js"></script>
     <script type="text/javascript" src="leafletembed.js"></script>
-    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+    <script type="text/javascript" src="leaflet-omnivore/leaflet-omnivore.min.js"></script>
 
 </head>
 <body>

@@ -1,0 +1,3 @@
+[submodule "leaflet-omnivore"]
+	path = leaflet-omnivore
+	url = https://github.com/mapbox/leaflet-omnivore
