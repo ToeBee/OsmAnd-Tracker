@@ -54,80 +54,6 @@
         $gpx_url_text = $dom_gpx->createTextNode('https://github.com/alejandroscf/OsmAnd-Tracker');
         $gpx_url->appendChild($gpx_url_text);
          
-        /*$gpx_time = $dom_gpx->createElement('time');
-        $gpx_time = $gpx->appendChild($gpx_time);
-        $gpx_time_text = $dom_gpx->createTextNode(gmdate("Y-m-d\Th:i:s\Z"));
-        $gpx_time->appendChild($gpx_time_text);
-        */ 
-        /*// placemarks
-        $names = array();
-        foreach ($dom_kml->getElementsByTagName('Placemark') as $placemark) {
-            //name
-            foreach ($placemark->getElementsByTagName('name') as $name) {
-                $name  = $name->nodeValue;
-                //check if the key exists
-                if (array_key_exists($name, $names)) {
-                    //increment the value
-                    ++$names[$name];
-                    $name = $name." ({$names[$name]})";
-                } else {
-                    $names[$name] = 0;
-                }
-            }
-            //description
-            foreach ($placemark->getElementsByTagName('description') as $description) {
-                $description  = $description->nodeValue;
-            }
-            foreach ($placemark->getElementsByTagName('Point') as $point) {
-                foreach ($point->getElementsByTagName('coordinates') as $coordinates) {
-                    //add the marker
-                    $coordinate = $coordinates->nodeValue;
-                    $coordinate = str_replace(" ", "", $coordinate);//trim white space
-                    $latlng = explode(",", $coordinate);
-                     
-                    if (($lat = $latlng[1]) && ($lng = $latlng[0])) {
-                        $gpx_wpt = $dom_gpx->createElement('wpt');
-                        $gpx_wpt = $gpx->appendChild($gpx_wpt);
- 
-                        $gpx_wpt_lat = $dom_gpx->createAttribute('lat');
-                        $gpx_wpt->appendChild($gpx_wpt_lat);
-                        $gpx_wpt_lat_text = $dom_gpx->createTextNode($lat);
-                        $gpx_wpt_lat->appendChild($gpx_wpt_lat_text);
-                         
-                        $gpx_wpt_lon = $dom_gpx->createAttribute('lon');
-                        $gpx_wpt->appendChild($gpx_wpt_lon);
-                        $gpx_wpt_lon_text = $dom_gpx->createTextNode($lng);
-                        $gpx_wpt_lon->appendChild($gpx_wpt_lon_text);
-                         
-                        $gpx_time = $dom_gpx->createElement('time');
-                        $gpx_time = $gpx_wpt->appendChild($gpx_time);
-                        $gpx_time_text = $dom_gpx->createTextNode(utcdate());
-                        $gpx_time->appendChild($gpx_time_text);
-                         
-                        $gpx_name = $dom_gpx->createElement('name');
-                        $gpx_name = $gpx_wpt->appendChild($gpx_name);
-                        $gpx_name_text = $dom_gpx->createTextNode($name);
-                        $gpx_name->appendChild($gpx_name_text);
-                         
-                        $gpx_desc = $dom_gpx->createElement('desc');
-                        $gpx_desc = $gpx_wpt->appendChild($gpx_desc);
-                        $gpx_desc_text = $dom_gpx->createTextNode($description);
-                        $gpx_desc->appendChild($gpx_desc_text);
-                         
-                        //$gpx_url = $dom_gpx->createElement('url');
-                        //$gpx_url = $gpx_wpt->appendChild($gpx_url);
-                        //$gpx_url_text = $dom_gpx->createTextNode($ref);
-                        //$gpx_url->appendChild($gpx_url_text);
-                         
-                        $gpx_sym = $dom_gpx->createElement('sym');
-                        $gpx_sym = $gpx_wpt->appendChild($gpx_sym);
-                        $gpx_sym_text = $dom_gpx->createTextNode('Waypoint');
-                        $gpx_sym->appendChild($gpx_sym_text);
-                    }
-                }
-            }*/
-            //foreach ($placemark->getElementsByTagName('LineString') as $lineString) {
-                //foreach ($lineString->getElementsByTagName('coordinates') as $coordinates) {
                     //add the new track
                     $gpx_trk = $dom_gpx->createElement('trk');
                     $gpx_trk = $gpx->appendChild($gpx_trk);
@@ -140,8 +66,6 @@
                     $gpx_trkseg = $dom_gpx->createElement('trkseg');
                     $gpx_trkseg = $gpx_trk->appendChild($gpx_trkseg);
                  
-                    //$coordinates = $coordinates->nodeValue;
-                    //$coordinates = preg_split("/[\s\r\n]+/", $coordinates); //split the coords by new line
                     foreach ($strings as $point) {
                         //$latlng = explode(",", $coordinate);
                         $info = unserialize($point);
@@ -183,9 +107,11 @@
                             $gpx_speed->appendChild($gpx_speed_text);
                         }
                     }
-                //}
-            //}
-        /*}*/
+        if ($_GET['new_file'] == "true") {
+            $fh = fopen(str_replace(".log",".gpx",$u), 'w');
+            fwrite($fh, $dom_gpx->saveXML());
+            fclose($fh);
+        }
         header("Content-Type: text/xml");
         echo $dom_gpx->saveXML();
     }
