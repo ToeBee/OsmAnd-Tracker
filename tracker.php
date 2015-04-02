@@ -1,5 +1,6 @@
 <?php
     include "settings.php";
+    ignore_user_abort("true");
     $key = $_GET['key'];
     if($key != $secretKey) {
         print "key doesn't match";

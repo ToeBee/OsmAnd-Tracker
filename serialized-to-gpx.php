@@ -1,4 +1,5 @@
 <?php
+    ignore_user_abort("true");
     //enter location of KML file here
     //$u = "http://code.google.com/apis/kml/documentation/KML_Samples.kml";
     $u = $_GET['file'];
