@@ -18,10 +18,10 @@
     $old = unserialize($loc_string);
     $diff = round(abs($info['timestamp']-$old['timestamp'])/1000);
     if ($diff > 60) {
-       rename($filePath . ".log","gpx/".$filePath . date("YmdHis",round($old['timestamp']/1000)) .".log");
+       rename($logPath, $gpxDirectory . date("Y-m-d-H-i-s",round($old['timestamp']/1000)) . $logName);
        //TODO Create GPX file
     }
-    $fh = fopen($filePath . ".log", 'a');
+    $fh = fopen($logPath, 'a');
     fwrite($fh, serialize($info) . "\n");
     fclose($fh);
     $fh = fopen($filePath, 'w');
