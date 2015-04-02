@@ -20,15 +20,29 @@
 
 <html>
 <head>
-    <title><?php echo $name; ?>'s Location</title>
+    <title><?=$name?>'s Location</title>
     <meta http-equiv="refresh" content="30" />
+    <meta charset="utf-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <link rel="stylesheet" href="leaflet/leaflet.css" />
+    <script type="text/javascript" src="leaflet/leaflet.js"></script>
+    <script type="text/javascript" src="leafletembed.js"></script>
+    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
 </head>
 <body>
-    <h3><?php echo $name?>'s status as of <?php echo $minutesAgo?> minutes ago:</h3>
-    <h3>Speed: <?php echo $info['speed']?> m/s</h3>
-    <iframe width="<?php echo $width?>" height="<?php echo $height?>" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="<?php echo $embedUrl?>" style="border: 1px solid black"></iframe>
+    <h3><?=$name?>'s status as of <?=$minutesAgo?> minutes ago:</h3>
+    <h3>Speed: <?=$info['speed']?> m/s</h3>
+    <!-- <iframe width="<?=$width?>" height="<?=$height?>" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="<?=$embedUrl?>" style="border: 1px solid black"></iframe> -->
+    <div id="map" style="width: <?=$width?>px; height: <?=$height?>px"></div>
     <br/>
     <small><a href="<?=$mapUrl?>">View Larger Map</a></small>
+        <script>
+            initmap();
+            L.marker([<?=$lat?>, <?=$lon?>]).addTo(map)
+            map.setView(new L.LatLng(<?=$lat?>, <?=$lon?>),<?=$zoom?>);
+            omnivore.gpx('serialized-to-gpx.php?file=tmplocation.log').addTo(map);
+        </script>
 
 </body>
 </html>
