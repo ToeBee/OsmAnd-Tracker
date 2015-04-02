@@ -14,15 +14,17 @@
     $info['speed'] = $_GET['speed'];
 
 
-    $fh = fopen($filePath, 'w');
-    fwrite($fh, serialize($info));
-    fclose($fh);
     $loc_string = file_get_contents($filePath);
     $old = unserialize($loc_string);
-    if (round(abs($info['timestamp']-$old['timestamp'])/1000) > 60) {
-       rename($filePath . ".log",$filePath . date("YmdHis",round($old['timestamp']/1000)) .".log");
+    $diff = round(abs($info['timestamp']-$old['timestamp'])/1000);
+    if ($diff > 60) {
+       rename($filePath . ".log","gpx/".$filePath . date("YmdHis",round($old['timestamp']/1000)) .".log");
+       //TODO Create GPX file
     }
     $fh = fopen($filePath . ".log", 'a');
     fwrite($fh, serialize($info) . "\n");
+    fclose($fh);
+    $fh = fopen($filePath, 'w');
+    fwrite($fh, serialize($info));
     fclose($fh);
 ?>
