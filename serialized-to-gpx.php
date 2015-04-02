@@ -1,14 +1,13 @@
 <?php
-    ignore_user_abort("true");
     //enter location of KML file here
     //$u = "http://code.google.com/apis/kml/documentation/KML_Samples.kml";
-    $u = $_GET['file'];
      
     function utcdate($timest) {
         return gmdate("Y-m-d\Th:i:s\Z", $timest);
     }
  
-     
+function s2g($inFile, &$outString) {
+    $u = $inFile;
     $u_parts = pathinfo($u); //array of url parts
     $u_ext = strtoupper($u_parts['extension']);
     if ($u_ext== "LOG") {
@@ -108,12 +107,8 @@
                             $gpx_speed->appendChild($gpx_speed_text);
                         }
                     }
-        if ($_GET['new_file'] == "true") {
-            $fh = fopen(str_replace(".log",".gpx",$u), 'w');
-            fwrite($fh, $dom_gpx->saveXML());
-            fclose($fh);
-        }
-        header("Content-Type: text/xml");
-        echo $dom_gpx->saveXML();
+        $outString = $dom_gpx->saveXML();
+       // echo $outString;
     }
+}
 ?>

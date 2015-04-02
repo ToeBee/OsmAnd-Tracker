@@ -41,7 +41,7 @@
             initmap();
             L.marker([<?=$lat?>, <?=$lon?>]).addTo(map)
             map.setView(new L.LatLng(<?=$lat?>, <?=$lon?>),<?=$zoom?>);
-            omnivore.gpx('serialized-to-gpx.php?file=tmplocation.log').addTo(map);
+            omnivore.gpx('s2g.php?file=tmplocation.log').addTo(map);
         </script>
 
 </body>
