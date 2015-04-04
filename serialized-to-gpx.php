@@ -26,7 +26,7 @@ function s2g($inFile, &$outString) {
 
         $gpx_version = $dom_gpx->createAttribute('version');
         $gpx->appendChild($gpx_version);
-        $gpx_version_text = $dom_gpx->createTextNode('1.1');
+        $gpx_version_text = $dom_gpx->createTextNode('1.0');
         $gpx_version->appendChild($gpx_version_text);
          
         $gpx_creator = $dom_gpx->createAttribute('creator');
@@ -46,7 +46,7 @@ function s2g($inFile, &$outString) {
          
         $gpx_xsi_schemaLocation = $dom_gpx->createAttribute('xsi:schemaLocation');
         $gpx->appendChild($gpx_xsi_schemaLocation);
-        $gpx_xsi_schemaLocation_text = $dom_gpx->createTextNode('http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd');
+        $gpx_xsi_schemaLocation_text = $dom_gpx->createTextNode('http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd');
         $gpx_xsi_schemaLocation->appendChild($gpx_xsi_schemaLocation_text);
          
         $gpx_url = $dom_gpx->createElement('url');
@@ -84,6 +84,11 @@ function s2g($inFile, &$outString) {
                             $gpx_time_text = $dom_gpx->createTextNode(utcdate(round($info['timestamp']/1000,0)));
                             $gpx_time->appendChild($gpx_time_text);
                              
+                            $gpx_speed = $dom_gpx->createElement('speed');
+                            $gpx_speed = $gpx_trkpt->appendChild($gpx_speed);
+                            $gpx_speed_text = $dom_gpx->createTextNode($info['speed']);
+                            $gpx_speed->appendChild($gpx_speed_text);
+
                             $gpx_hdop = $dom_gpx->createElement('hdop');
                             $gpx_hdop = $gpx_trkpt->appendChild($gpx_hdop);
                             $gpx_hdop_text = $dom_gpx->createTextNode($info['hdop']);
@@ -99,12 +104,6 @@ function s2g($inFile, &$outString) {
                             $gpx_trkpt_lon_text = $dom_gpx->createTextNode($lng);
                             $gpx_trkpt_lon->appendChild($gpx_trkpt_lon_text);
                              
-                            $gpx_extension = $dom_gpx->createElement('extensions');
-                            $gpx_extension = $gpx_trkpt->appendChild($gpx_extension);
-                            $gpx_speed = $dom_gpx->createElement('speed');
-                            $gpx_speed = $gpx_extension->appendChild($gpx_speed);
-                            $gpx_speed_text = $dom_gpx->createTextNode($info['speed']);
-                            $gpx_speed->appendChild($gpx_speed_text);
                         }
                     }
         $outString = $dom_gpx->saveXML();
