@@ -1,6 +1,11 @@
 <?php
     global $secretKey;
+    global $workingDirectory;
+    global $fileName;
     global $filePath;
+    global $logName;
+    global $logPath;
+    global $gpxDirectory;
     global $name;
     global $zoom;
     global $accuracy;
@@ -10,7 +15,12 @@
     $secretKey = '4fkw8vxp';
     #used to round the lat/lon values so you aren't sharing your *exact* location
     $accuracy = 2; 
-    $filePath = '/tmp/location';
+    $workingDirectory = '/tmp/';
+    $fileName = 'location';
+    $filePath = $fileDirectory . $fileName;
+    $logName = $fileName . ".log";
+    $logPath = $workingDirectory . $logName;
+    $gpxDirectory = $workingDirectory . 'gpx/';
 
     # Display options
 
