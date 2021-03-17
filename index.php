@@ -14,7 +14,7 @@
         $timeAgo=$ClassUtils->timeAgo(date("Y-m-d H:i:s",substr($info['timestamp'],0,-3)));
         $speed=$ClassUtils->convertUnit($info['speed'],$unitForSpeed);
 
-        if($_GET['realgpskey']==$secretRealGPDKey){
+        if($_GET['realgpskey']==$secretRealGPSKey){
             $lat = $info['reallat'];
             $lon = $info['reallon'];
         }else{

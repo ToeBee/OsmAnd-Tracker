@@ -14,7 +14,7 @@
     // This key must be entered in OsmAnd's tracking URL as &key=
     $secretKey = 'CHANGEME';
     // This key must be entered in OsmAnd's tracking URL as &realgpskey=
-    $secretRealGPDKey="CHANGEME";
+    $secretRealGPSKey="CHANGEME";
 
 	// API key from MapQuest. Get one from developer.mapquest.com
 	$apikey = '';
