@@ -12,9 +12,9 @@
     require_once(__DIR__ . "/../languages/" . $lang . ".php");
 
     // This key must be entered in OsmAnd's tracking URL as &key=
-    $secretKey = 'CHANGEME1';
+    $secretKey = 'CHANGEME';
     // This key must be entered in OsmAnd's tracking URL as &realgpskey=
-    $secretRealGPDKey="CHANGEME1";
+    $secretRealGPDKey="CHANGEME";
 
 	// API key from MapQuest. Get one from developer.mapquest.com
 	$apikey = '';
