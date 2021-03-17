@@ -54,7 +54,7 @@
                     ".($speed>0?"<h3>"._SPEED.": ".$speed."</h3>":"<h3>"._IT_IS_STOPPED."</h3>")."
                     <a href=".$mapUrl."><img src='".$staticUrl."'></a><br/>
                     <p>"._CLICK_TO_SEE_INTERACTIVE_MAP."</p>
-                    <small>"._PAGE_GENERATED_AT." ".date("Y-m-d H:i:s")."</small>
+                    <small>"._PAGE_GENERATED_AT." ".date("H:i")."</small>
                 </center>
             </body>
          </html>";

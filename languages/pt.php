@@ -5,7 +5,7 @@ DEFINE ("_MINUTES_AGO", "minutos atrás");
 DEFINE ("_SPEED", "Velocidade");
 DEFINE ("_IT_IS_STOPPED", "A Descansar!!");
 DEFINE ("_TIMEZONE", "Fuso Horário");
-DEFINE ("_PAGE_GENERATED_AT", "Página gerada em");
+DEFINE ("_PAGE_GENERATED_AT", "Página gerada às");
 
 DEFINE ("_CLICK_TO_SEE_INTERACTIVE_MAP", "Clicar para ver mapa interativo");
 DEFINE ("_WARNING_INVALID_SECRET_KEY", "A chave utilizade é inválida");
