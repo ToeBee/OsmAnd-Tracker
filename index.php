@@ -1,5 +1,5 @@
 <?php
-    require_once "includes/settings.php";
+    require_once __DIR__."/includes/settings.php";
 
 	if ($secretKey == 'CHANGEME') {
 		die(_WARNING_NEED_TO_CHANGE_SECRET_KEY);
@@ -11,10 +11,17 @@
 	if(file_exists($filePath)){
         $loc_string = file_get_contents($filePath);
         $info = unserialize($loc_string);
-        $timeAgo=$ClassUtils->timeAgo(date("Y-m-d H:i:s",$info['timestamp']));
+        $timeAgo=$ClassUtils->timeAgo(date("Y-m-d H:i:s",substr($info['timestamp'],0,-3)));
         $speed=$ClassUtils->convertUnit($info['speed'],$unitForSpeed);
-        $lat = $info['lat'];
-        $lon = $info['lon'];
+
+        if($_GET['realgpskey']==$secretRealGPDKey){
+            $lat = $info['reallat'];
+            $lon = $info['reallon'];
+        }else{
+            $lat = $info['fakelat'];
+            $lon = $info['fakelon'];
+        }
+
         $staticUrl = 'https://www.mapquestapi.com/staticmap/v5/map?';
         $staticUrl = $staticUrl."size=$width,$height&type=map&imagetype=jpeg&key=$apikey";
         $staticUrl = $staticUrl . "&locations=$lat,$lon|&zoom=$zoom&center=$lat,$lon";
@@ -34,18 +41,20 @@
 		<iframe src="http://www.openstreetmap.org/export/embed.html?m&bbox=$bb&amp;layer=mapnik" width=800 height=600></iframe>
 		The issue is that you cannot place a marker (not that I have found).
 	*/
-    
+    $date = new DateTime();
+    $timeZone = $date->getTimezone();
     echo "<html>
             <head>
                 <title>$pageTitle</title>
-                ".($refreshTime>0?"<meta http-equiv='refresh' content='60'/>":"")."
+                ".($refreshTime>0?"<meta http-equiv='refresh' content='$refreshTime'/>":"")."
             </head>
             <body>
                 <center>
-                    <h3>".$yourName." "._STATUS_AS_OF." ".$timeAgo.":</h3>
-                    <h3>"._SPEED.": ".$speed."</h3>
+                    ".($timeAgo>0?"<h3>".$yourName." "._STATUS_AS_OF." ".$timeAgo."</h3><small>"._TIMEZONE." ".$timeZone->getName()."</small>":"")."
+                    ".($speed>0?"<h3>"._SPEED.": ".$speed."</h3>":"<h3>"._IT_IS_STOPPED."</h3>")."
                     <a href=".$mapUrl."><img src='".$staticUrl."'></a><br/>
                     <p>"._CLICK_TO_SEE_INTERACTIVE_MAP."</p>
+                    <small>"._PAGE_GENERATED_AT." ".date("Y-m-d H:i:s")."</small>
                 </center>
             </body>
          </html>";

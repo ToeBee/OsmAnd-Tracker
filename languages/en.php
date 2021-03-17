@@ -3,6 +3,9 @@
 DEFINE ("_STATUS_AS_OF", "status as of");
 DEFINE ("_MINUTES_AGO", "minutes ago");
 DEFINE ("_SPEED", "Speed");
+DEFINE ("_IT_IS_STOPPED", "Taking a break.");
+DEFINE ("_TIMEZONE", "Timezone");
+DEFINE ("_PAGE_GENERATED_AT", "Page generated at");
 DEFINE ("_CLICK_TO_SEE_INTERACTIVE_MAP", "Click for an interactive map");
 DEFINE ("_WARNING_INVALID_SECRET_KEY", "The used key is invalid");
 DEFINE ("_WARNING_NEED_TO_GET_APIKEY", "You must create and API key at <a href='https://developer.mapquest.com/'>https://developer.mapquest.com/</a>");

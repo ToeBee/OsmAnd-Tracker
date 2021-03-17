@@ -10,7 +10,7 @@ if (!class_exists('UTILS')) {
             $dateTime = time() - strtotime($dateTime);
 
             $tokens = array(
-                31536000 => array(_YEAR, YEARS),
+                31536000 => array(_YEAR, _YEARS),
                 2592000 => array(_MONTH, _MONTHS),
                 604800 => array(_WEEK, _WEEKS),
                 86400 => array(_DAY, _DAYS),
@@ -38,8 +38,8 @@ if (!class_exists('UTILS')) {
             return number_format(($meterPerSec*$units[$unit]),0,",","")." ".$unitsLabels["kilometer_per_hour"];
         }
 
-        function generateRandomPoint($centre, $radius) {
-            $radius_earth = 3959; //miles
+        function generateRandomPoint($centre, $radius="") {
+            $radius_earth = 5; //miles
 
             //Pick random distance within $distance;
             $distance = lcg_value()*$radius;

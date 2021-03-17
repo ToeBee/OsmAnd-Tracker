@@ -1,4 +1,6 @@
 <?php
+    date_default_timezone_set('Europe/Lisbon');
+    putenv("TZ=Europe/Lisbon");
 
     include_once(__DIR__."/class.utils.php");
     $ClassUtils = new UTILS();
@@ -10,7 +12,9 @@
     require_once(__DIR__ . "/../languages/" . $lang . ".php");
 
     // This key must be entered in OsmAnd's tracking URL as &key=
-    $secretKey = 'CHANGEME';
+    $secretKey = 'CHANGEME1';
+    // This key must be entered in OsmAnd's tracking URL as &realgpskey=
+    $secretRealGPDKey="CHANGEME1";
 
 	// API key from MapQuest. Get one from developer.mapquest.com
 	$apikey = '';
@@ -19,7 +23,7 @@
 	$trackerURL="https://url.com/";
 
     // Used to round the lat/lon values so you aren't sharing your *exact* location
-    $accuracy = 3; // in number of decimal positions
+    $accuracy = 2; // in number of decimal positions
 
 	// Random name for the file to avoid being downloaded ( Change this value )
     $fileName="filename_location";
@@ -31,7 +35,7 @@
     //$unitForSpeed="mile_per_hour";
 
     //Time in seconds when the page gets updates automatically. Zero means no refresh
-    $refreshTime=0;
+    $refreshTime=30;
 
 	// Used in page title
     $pageTitle = 'Page Title Example';
@@ -40,9 +44,9 @@
 
 	// Zoom on the map
 	// 8 gives a high overview; 12 gives a more zoomed-in map. Lower or higher values also possible.
-    $zoom = "8";
+    $zoom = "15";
 
-    $height = "500";
-    $width = "600";
+    $height = "600";
+    $width = "900";
 
 

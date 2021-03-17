@@ -1,5 +1,5 @@
 <?php
-    require_once "../settings.php";
+    require_once __DIR__."/../includes/settings.php";
 
     //Generate GPS point
     $point = array(
@@ -16,11 +16,12 @@
 
     $info['lat'] = round($point['x'], $accuracy);
     $info['lon'] = round($point['y'], $accuracy);
-    $info['timestamp'] = intval($timestamp);
+    $info['timestamp'] = intval($timestamp)."000";
     $info['hdop'] = floatval($hdop);
     $info['altitude'] = floatval($altitude);
     $info['speed'] = floatval($speed);
-    print_r($info);
+    $url=$trackerURL."/tracker.php?lat=".$info['lat']."&lon=".$info['lon']."&timestamp=".$info['timestamp']."&hdop=".$info['hdop']."&altitude=".$info['altitude']."&speed=".$info['speed']."&key=".$secretKey;
+    echo "<a href='$url' target='_blank'>$url</a>";
     $fh = fopen($filePath, 'w');
     fwrite($fh, serialize($info));
     fclose($fh);
