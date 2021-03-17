@@ -1,13 +1,12 @@
 <?php
-    require "settings.php";
+    require_once "settings.php";
 
 	if ($key == 'CHANGEME') {
-		die('Key not set.');
+		die(_WARNING_NEED_TO_CHANGE_SECRET_KEY);
 	}
     $key = $_GET['key'];
     if (md5($key . $secretKey) != md5($secretKey . $secretKey)) { // Constant time comparison
-        print 'Invalid key';
-        return;
+        die(_WARNING_INVALID_SECRET_KEY);
     }
 
     $info['lat'] = round($_GET['lat'], $accuracy);
