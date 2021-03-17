@@ -1,7 +1,7 @@
 <?php
     require_once "../settings.php";
 
-    //Generate GPS point$randomFloat =
+    //Generate GPS point
     $point = array(
        'x' => random_int(-90, 90 - 1) + (random_int(0, PHP_INT_MAX - 1) / PHP_INT_MAX ),
        'y' => random_int(-180, 180 - 1) + (random_int(0, PHP_INT_MAX - 1) / PHP_INT_MAX )
