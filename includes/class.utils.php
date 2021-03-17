@@ -26,16 +26,21 @@ if (!class_exists('UTILS')) {
             }
         }
 
-        function convertUnit($meterPerSec,$unit='kilometer_per_hour'){
+        function convertUnit($meterPerSec,$unit='kilometer_per_hour',$label=false){
             $units=array(
                 "kilometer_per_hour"=>"0.2777778",
                 "mile_per_hour"=>"0.44704"
             );
             $unitsLabels=array(
-                "kilometer_per_hour"=>"km/h (kph)",
-                "mile_per_hour"=>" mi/h (mph)"
+                "kilometer_per_hour"=>"km/h",
+                "mile_per_hour"=>" mi/h"
             );
-            return number_format(($meterPerSec*$units[$unit]),0,",","")." ".$unitsLabels["kilometer_per_hour"];
+            if($label){
+                return number_format(($meterPerSec*$units[$unit]),0,",","")." ".$unitsLabels[$unit];
+            }else{
+                return number_format(($meterPerSec*$units[$unit]),0,",","");
+            }
+
         }
 
         function generateRandomPoint($centre, $radius="") {
