@@ -26,11 +26,4 @@
     $fh = fopen($filePath, 'w');
     fwrite($fh, serialize($info));
     fclose($fh);
-/*
-    $contents='';
-    foreach ($_GET as $key => $value) {
-        $contents .= $key . " => " . $value . "\n"; // or use `"\r\n"`
-    }
-    file_put_contents("./test.log", $contents, FILE_APPEND);
-*/
 
